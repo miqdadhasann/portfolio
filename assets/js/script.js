@@ -113,19 +113,26 @@ const pages = document.querySelectorAll("[data-page]");
 for (let i = 0; i < navigationLinks.length; i++) {
   navigationLinks[i].addEventListener("click", function () {
 
-    // Ambil target dan ubah ke huruf kecil semua biar aman
     const targetPage = this.dataset.navLink.toLowerCase(); 
 
+    // Langkah 1: Ubah status HALAMAN (Tampilkan yang sesuai, sembunyikan yang lain)
     for (let j = 0; j < pages.length; j++) {
-      // Bandingkan dengan ID halaman (juga diubah ke kecil)
       if (targetPage === pages[j].dataset.page.toLowerCase()) {
         pages[j].classList.add("active");
-        navigationLinks[i].classList.add("active");
         window.scrollTo(0, 0);
       } else {
         pages[j].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
       }
     }
+
+    // Langkah 2: Ubah status TOMBOL NAVIGASI (Nyalakan yang diklik, matikan yang lain)
+    for (let k = 0; k < navigationLinks.length; k++) {
+      if (navigationLinks[k] === this) {
+        navigationLinks[k].classList.add("active"); // Nyalakan tombol yang diklik
+      } else {
+        navigationLinks[k].classList.remove("active"); // Matikan tombol lainnya
+      }
+    }
+
   });
 }
