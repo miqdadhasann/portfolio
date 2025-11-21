@@ -1871,7 +1871,62 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .social-list { justify-content: center; }
 
+/* ----------------------------------- */
+/* #FIX PORTFOLIO ALIGNMENT           */
+/* ----------------------------------- */
 
+/* 1. Paksa Kartu Penuhi Tinggi Grid */
+.project-item {
+  height: 100%; /* Memaksa kartu mengisi penuh sel grid */
+}
+
+.project-item > a {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Link membungkus seluruh kartu agar bisa diatur isinya */
+}
+
+/* 2. Paksa Thumbnail Rata & Seragam */
+.project-img {
+  position: relative;
+  width: 100%;
+  height: 220px; /* TINGGI TETAP: Ubah angka ini jika ingin lebih tinggi/pendek */
+  overflow: hidden;
+  border-radius: 16px;
+  margin-bottom: 15px;
+  flex-shrink: 0; /* Mencegah gambar tergencet jika teks kepanjangan */
+}
+
+.project-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* KUNCI: Memotong gambar agar pas memenuhi kotak (Crop) */
+  object-position: center; /* Fokus gambar selalu di tengah */
+  transition: var(--transition-1);
+}
+
+/* Efek Zoom saat Hover (Opsional - Biar Keren) */
+.project-item > a:hover img {
+  transform: scale(1.1);
+}
+
+/* 3. Ratakan Judul (Header Title) */
+.project-title {
+  margin-left: 10px;
+  margin-bottom: 5px;
+  
+  /* Trik agar judul selalu memakan tempat 2 baris (biar sejajar walau judul pendek) */
+  min-height: 3.2em; 
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 4. Ratakan Kategori/Deskripsi */
+.project-category {
+  margin-left: 10px;
+  /* Mendorong kategori ke bagian paling bawah kartu (jika ada sisa ruang) */ 
+}
 
   /**
 	 * RESUME
